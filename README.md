@@ -9,7 +9,7 @@ Describe, get, and logs output from the last deployed Kubernetes object in one c
 
 ### Installing
 
-The only requirement is that `kubectl` must be installed on your system.
+The only requirement is that `kubectl >= 1.13.x` must be installed on your system.
 
 Linux
 ```
