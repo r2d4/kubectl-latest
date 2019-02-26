@@ -9,7 +9,7 @@ Describe, get, and logs output from the last deployed Kubernetes object in one c
 
 ### Installing
 
-The only requirement is that `kubectl >= 1.13.x` must be installed on your system.
+The only requirement is that `kubectl >= 1.11.x` must be installed on your system.
 
 Linux
 ```
@@ -29,7 +29,7 @@ https://github.com/r2d4/kubectl-latest/releases/download/v0.0.1/kubectl-latest-w
 
 ### Examples
 
-You can invoke the binary directly `kubectl-latest` or, as long as the binary is on your path, through kubectl with `kubectl latest`.
+You can invoke the binary directly `kubectl-latest` or, if you are using `kubectl >= 1.12.x`, through kubectl with `kubectl latest`.
 
 ```bash
 # Return the "get" output of the most recent resource (across all types)

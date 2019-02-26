@@ -31,9 +31,3 @@ cross: $(foreach platform, $(SUPPORTED_PLATFORMS), $(BUILD_DIR)/$(PROJECT)-$(pla
 .PHONY: install
 install: $(GO_FILES) $(BUILD_DIR)
 	GOOS=$(GOOS) GOARCH=$(GOARCH) CGO_ENABLED=0 go install $(BUILD_PKG)
-
-.PHONY: install
-install: $(GO_FILES) $(BUILD_DIR)
-	GOOS=$(GOOS) GOARCH=$(GOARCH) CGO_ENABLED=0 go install $(BUILD_PKG)
-
-

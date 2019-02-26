@@ -122,7 +122,9 @@ func latest(noun string) (string, string, error) {
 	if err != nil {
 		return "", "", errors.Wrapf(err, "getting latest %s", noun)
 	}
-	nk := strings.Split(strings.TrimSpace(string(out)), " ")
+	nks := strings.Split(strings.TrimSpace(string(out)), "\n")
+	last := nks[len(nks)-1]
+	nk := strings.Split(last, " ")
 	return nk[0], nk[1], nil
 }
 
@@ -132,7 +134,7 @@ func latestArgs(noun string) []string {
 	args = append(args, noun)
 	args = append(args, "--sort-by={.metadata.creationTimestamp}")
 	args = append(args, "-o=go-template")
-	args = append(args, `--template={{$noun := "" }}{{range .items}}{{$noun = (printf "%s %s" .metadata.name .kind)}}{{end}}{{printf "%s" $noun}}`)
+	args = append(args, `--template={{range .items}}{{(printf "%s %s\n" .metadata.name .kind)}}{{end}}`)
 	return args
 }
 
