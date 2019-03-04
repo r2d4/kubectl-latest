@@ -31,3 +31,13 @@ cross: $(foreach platform, $(SUPPORTED_PLATFORMS), $(BUILD_DIR)/$(PROJECT)-$(pla
 .PHONY: install
 install: $(GO_FILES) $(BUILD_DIR)
 	GOOS=$(GOOS) GOARCH=$(GOARCH) CGO_ENABLED=0 go install $(BUILD_PKG)
+
+.SECONDEXPANSION:
+TAR_TARGETS_linux   := $(BUILD_DIR)/$(PROJECT)-linux-amd64
+TAR_TARGETS_darwin  := $(BUILD_DIR)/$(PROJECT)-darwin-amd64
+TAR_TARGETS_windows := $(BUILD_DIR)/$(PROJECT)-windows-amd64.exe
+$(BUILD_DIR)/$(PROJECT)-%-amd64.tar.gz: $$(TAR_TARGETS_$$*)
+	tar -cvf $@ $^
+
+.PHONY: cross-tars
+cross-tars: $(BUILD_DIR)/$(PROJECT)-windows-amd64.tar.gz $(BUILD_DIR)/$(PROJECT)-linux-amd64.tar.gz $(BUILD_DIR)/$(PROJECT)-darwin-amd64.tar.gz
